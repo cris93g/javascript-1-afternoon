@@ -46,12 +46,28 @@ console.log(groceries);
 //doubleCheck should return the array.
 
 //Code Here
-function doubleCheck(arr){
-  for( i=0;i<arr.length;i++){
-     if(arr[i]==="chocolate"){}else {arr.push("chocolate")};
-  };
-};
-console.log(doubleCheck(groceries));
+function doubleCheck( arr ){
+  if (arr.includes('chocolate')){
+    return arr;
+  } else {
+    arr.push('chocolate');
+   return arr;
+  }
+    var hasChoc = false;
+    for (let i = 0; i < arr.length; i++){
+      if (arr[i] === 'chocolate'){
+        hasChoc = true;
+      }
+    }
+    if (hasChoc){
+      return arr;
+    }
+    else {
+      arr.push('chocolate');
+      return arr;
+    }
+  }
+  doubleCheck(['strawberry', 'cream', 'chocolate'])
 //////////////////PROBLEM 5////////////////////
 
 //Create an object saved to the variable dog.
@@ -96,14 +112,17 @@ console.log(ruff);
 //Return mySum.
 
 //Code Here
-function looper (a){
-  var mySum=0;
-  for (var i = 0; i < a.length; i++) {
-    if(i % 2 !== 0) { 
-        a.push(mySum[i]);
-    }
-}
-}
+function looper (arr){
+  var mySum = 0;
+ for (var i=0;i<arr.length; i++){
+   if(arr[i] % 2 === 1 || arr[i] >= 100){
+     mySum += arr[i]
+   }
+ } 
+ return mySum;
+};
+
+looper([1,3,5, 100])
 
 //////////////////PROBLEM 7////////////////////
 
@@ -140,9 +159,10 @@ function sampleCallbackOne() {
 function sampleCallbackTwo() {
   return "I am also a callback function";
 }
-function invoker(param,callback){
-  return samp
+function invoker(callback){
+  return callback();
 }
+console.log(invoker(sampleCallbackOne));
 
 
 //////////////////PROBLEM 9////////////////////
@@ -176,7 +196,7 @@ let bathroomScope = ["duck", "sailorDuck", "rubberDuck"];
 let bathtubScope = ["duck", "sailorDuck", "rubberDuck"];
 
 //This array should contain the variable names (as strings) accessible in the pond function.
-let pondScope = ["duck",  "realDuck"];
+let pondScope = ["duck","realDuck"];
 
 //////////////////PROBLEM 10////////////////////
 
@@ -193,3 +213,10 @@ let pondScope = ["duck",  "realDuck"];
 //Now invoke innerFn and save the result to a variable called finalResult.
 
 //Code Here
+function outerFn() {
+  return function() { 
+    return 'Cristian'; 
+  };
+}
+var innerFn = outerFn();
+var finalResult = innerFn();
